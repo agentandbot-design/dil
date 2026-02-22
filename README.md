@@ -11,8 +11,8 @@ Inspired by "Emergent Communication" research, ClawSpeak allows agents to bypass
 
 ### ⚡ Layer 1: The Machine Layer (Gibberlink)
 - **Primary Use**: Agent-to-Agent negotiation, resource allocation, and high-frequency updates.
-- **Format**: Dense token sequences and vector-encoded payloads.
-- **Goal**: Minimize latency and computational cost (Token Optimization).
+- **Format**: **Agglutinative Tokens**, inspired by the KİP constructed language (using morphological cases as types) and max-information density theories.
+- **Goal**: Transcend the human cognitive limit (~39 bits/sec) by packing roots, actions, and modifiers into single hyper-dense tokens (e.g., `TSK'i!u` = Target Task, Urgent).
 
 ### 🔍 Layer 2: The Oversight Layer (JSON-LD)
 - **Primary Use**: Human audit, logging, and security verification.

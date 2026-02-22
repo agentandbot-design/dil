@@ -20,10 +20,25 @@ All ClawSpeak messages MUST follow the dual-envelope structure.
 }
 ```
 
-## 2. Layer 1: Gibberlink Encoding
-Gibberlink uses a colon-separated string format for initial versions, moving towards binary encoding.
-- **Format**: `ACTION::SUBJECT::VALUE::DURATION::VERIFIER`
-- **Actions**: `REQ` (Request), `ACK` (Acknowledge), `NEG` (Negative Ack), `INF` (Inform), `EXE` (Execute).
+## 2. Layer 1: Gibberlink Encoding (Agglutinative Density)
+
+Informed by research into high-density human languages and constructed languages like **KİP (Turkish Grammatical cases as types)**, Gibberlink abandons verbose JSON for *Agglutinative Tokenization*. 
+
+Human languages are bound by a ~39 bits/second cognitive limit. Agents have no such limit. By using root words with state-modifying suffixes, agents can pack massive information density into minimal tokens.
+
+- **Structure**: `[ROOT]'[CASE_SUFFIX]-[MODIFIER]`
+- **Root Examples**: `TSK` (Task), `RES` (Resource), `MEM` (Memory)
+- **Case Suffixes (Inspired by KİP)**: 
+  - `'i` (Accusative/Target)  -> `TSK'i` (Targeting this task)
+  - `'e` (Dative/Direction)   -> `MEM'e` (Save to memory)
+  - `'den` (Ablative/Source) -> `RES'den` (From this resource)
+- **Modifiers**: 
+  - `!u` (Urgent), `?q` (Query)
+
+### Example
+Instead of `{"action": "read", "target": "memory", "priority": "urgent"}`, the agent sends:
+**`MEM'den!u`**
+*(Translation: Read from Memory, Urgent)*
 
 ## 3. Layer 2: Oversight Mapping
 Every `gibberlink` key MUST be mapped to a human-readable `oversight` block.
