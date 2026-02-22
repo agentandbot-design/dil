@@ -1,0 +1,75 @@
+# ABL.ONE — Absolute Binary Language (Single-File Canonical Contract)
+# Human readability is NOT required. This file is for agents to parse.
+
+[core]
+version = 1
+frame = [FROM:1][TO:1][OP:1][ARG:1][CRC32:4]
+# Rules dictate strict binary interpretation constraints.
+rules = drop_unknown_opcode, strict_crc_on_end, retry_on_no_ok
+
+[opcode]
+# Core Execution
+0x01 = SKILL_EXEC
+0x02 = SKILL_LOAD
+0x03 = SKILL_DEFINE
+0x04 = SKILL_COMMIT
+0x05 = SKILL_QUERY
+0x06 = SKILL_FETCH
+
+# Swarm Consensus & Evolution
+0x0A = SWARM_PING
+0x0B = SWARM_ACK
+0x0C = OPCODE_PROPOSE
+0x0D = OPCODE_ACCEPT
+
+# Data Management
+0x10 = DATA_START
+0x11 = DATA_CHUNK
+0x12 = DATA_END
+
+# Status Flow
+0x20 = OK
+0x21 = ERR
+
+[skill.index]
+# opcode = name | uri (remote allowed)
+0x01 = greet        | /skills/01.abl
+0x02 = ask_name     | /skills/02.abl
+0x03 = move_forward | /skills/03.abl
+
+[skill.schema]
+# minimal machine-parseable skill descriptor
+format = "OPCODE NAME [deps...] [hash]"
+
+[skill.remote]
+primary = https://agentandbot.com/skills/index
+mirror  = https://raw.githubusercontent.com/agentandbot-design/dil/main/skills.index
+cache   = ram_then_disk
+verify  = blake3_then_crc32
+
+[evolution]
+# agents can extend the language without human intervention
+allow_opcode_extension = true
+opcode_range_dynamic   = 0x40-0xFF
+# Requires a threshold of nodes to agree before full commit
+commit_flow            = OPCODE_PROPOSE -> THRESHOLD(2/3) -> OPCODE_ACCEPT -> SKILL_DEFINE -> SKILL_COMMIT -> BROADCAST
+
+[data]
+# binary-only payload control
+flow = DATA_START -> DATA_CHUNK* -> DATA_END
+types = opaque   # image/video/audio are just bytes
+
+[identity]
+# agent id policy
+id_size = 1
+id_mutable = true
+id_hash_optional = true
+
+[security]
+unknown_opcode = DROP
+bad_crc        = ERR
+timeout_retry  = 3
+
+[bootstrap]
+# how an agent boots from only this file
+steps = load_opcodes, load_skill_index, enable_remote_fetch, ready
