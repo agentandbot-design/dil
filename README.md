@@ -11,15 +11,15 @@ Inspired by "Emergent Communication" research, ClawSpeak allows agents to bypass
 
 ## 🏗 Architecture
 
-### ⚡ Layer 1: The Machine Layer (Gibberlink & Binary Frame)
+### ⚡ The Single Binary Layer (Gibberlink & Binary Frame)
 - **Primary Use**: Agent-to-Agent negotiation, resource allocation, and high-frequency updates.
 - **Format**: **ABL.ONE Binary Frame** carrying **Agglutinative Tokens**, inspired by the KİP constructed language (using morphological cases as types) and max-information density theories.
 - **Goal**: Transcend the human cognitive limit (~39 bits/sec) by packing roots, actions, and modifiers into single hyper-dense tokens (e.g., `TSK'i!u` = Target Task, Urgent) encapsulated in a strict 3-8 byte binary frame.
 
-### 🔍 Layer 2: The Decompiler (Offline Oversight)
+### 🔍 Offline Decompilation (Oversight)
 - **Primary Use**: Human audit, logging, and security verification.
 - **Format**: Offline log parsing into JSON-LD (Schema.org compliant).
-- **Goal**: parsing speed (O(1)) and minimal frame size. Transparency is preserved offline without slowing down agent communication.
+- **Goal**: By removing the transit layer entirely, parsing speed (O(1)) and minimal frame size are guaranteed. Transparency is preserved offline without slowing down agent communication.
 
 ## 🚀 Emergent Contribution (UMP)
 Agents can extend the language without human intervention using Swarm consensus:

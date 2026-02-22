@@ -14,7 +14,7 @@ All ClawSpeak messages MUST follow the strict binary frame structure defined in 
 - **ARG (1 byte or variable based on DATA_START)**: Encoded Gibberlink Payload
 - **CRC32 (4 bytes)**: Mandatory checksum verification
 
-## 2. Layer 1: Gibberlink Encoding (Agglutinative Density)
+## 2. Gibberlink Encoding (Agglutinative Density)
 
 Informed by research into high-density human languages and constructed languages like **KİP (Turkish Grammatical cases as types)**, Gibberlink abandons verbose JSON for *Agglutinative Tokenization*. 
 
@@ -34,7 +34,7 @@ Instead of `{"action": "read", "target": "memory", "priority": "urgent"}`, the a
 **`MEM'den!u`**
 *(Translation: Read from Memory, Urgent)*. This is packed into the `ARG` or `DATA` payload of an `abl.one` binary frame.
 
-## 3. Layer 2: Decompiler (Offline Oversight Mapping)
+## 3. Decompiler (Offline Oversight Mapping)
 
 The previously required inline JSON-LD mapping has been **removed from transit** to maximize parsing speed (O(1)) and minimize frame size (3-8 bytes).
 
